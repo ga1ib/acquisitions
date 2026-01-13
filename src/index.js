@@ -1,4 +1,7 @@
 import dotenv from 'dotenv';
-import './server.js'; // just run it
 
+// Load environment variables first
 dotenv.config();
+
+// Now import and start the server
+import './server.js';

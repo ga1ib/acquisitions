@@ -138,12 +138,19 @@
 
 ## Testing
 
-Use the provided `test_auth.js` script:
+Two test scripts are provided:
 
+**ES Modules version** (`test_auth.js`):
 1. Start the server: `npm run dev`
 2. Run tests: `node test_auth.js`
 
-Note: Tests require a properly configured DATABASE_URL in your .env file.
+**CommonJS version** (`test_auth_cjs.js`) - More compatible:
+1. Start the server: `npm run dev`
+2. Run tests: `node test_auth_cjs.js`
+
+Both scripts test all authentication endpoints and error cases.
+
+**Note:** Tests require a properly configured DATABASE_URL in your .env file.
 
 ## Next Steps
 

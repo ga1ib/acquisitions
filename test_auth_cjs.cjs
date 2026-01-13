@@ -1,7 +1,7 @@
-// Simple test script for authentication endpoints
-// Run this after starting the server with: node test_auth.js
+// CommonJS version of the auth test script
+// Run with: node test_auth_cjs.js
 
-import http from 'http';
+const http = require('http');
 
 const BASE_URL = 'localhost';
 const PORT = 3000;
