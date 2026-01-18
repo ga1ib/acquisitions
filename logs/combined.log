@@ -25,3 +25,20 @@
 {"level":"info","message":"::1 - - [13/Jan/2026:07:19:03 +0000] \"GET / HTTP/1.1\" 500 91 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-13T07:19:03.156Z"}
 {"level":"info","message":"Hello from Acquisitions Service!","service":"acquisitions-api","timestamp":"2026-01-13T07:28:33.399Z"}
 {"level":"info","message":"::1 - - [13/Jan/2026:07:28:33 +0000] \"GET / HTTP/1.1\" 200 39 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-13T07:28:33.423Z"}
+{"level":"info","message":"Hello from Acquisitions Service!","service":"acquisitions-api","timestamp":"2026-01-18T04:22:10.630Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:22:10 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-18T04:22:10.654Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:22:10 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-18T04:22:10.900Z"}
+{"level":"info","message":"Hello from Acquisitions Service!","service":"acquisitions-api","timestamp":"2026-01-18T04:22:16.623Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:22:16 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-18T04:22:16.627Z"}
+{"level":"info","message":"Hello from Acquisitions Service!","service":"acquisitions-api","timestamp":"2026-01-18T04:22:25.412Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:22:25 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\"","service":"acquisitions-api","timestamp":"2026-01-18T04:22:25.415Z"}
+{"level":"warn","message":"Bot detected","service":"acquisitions-api","timestamp":"2026-01-18T04:27:07.671Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:27:07 +0000] \"GET / HTTP/1.1\" 403 50 \"-\" \"PostmanRuntime/7.39.1\"","service":"acquisitions-api","timestamp":"2026-01-18T04:27:07.674Z"}
+{"level":"warn","message":"Bot detected","service":"acquisitions-api","timestamp":"2026-01-18T04:27:16.696Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:27:16 +0000] \"POST / HTTP/1.1\" 403 50 \"-\" \"PostmanRuntime/7.39.1\"","service":"acquisitions-api","timestamp":"2026-01-18T04:27:16.698Z"}
+{"level":"warn","message":"Bot detected","service":"acquisitions-api","timestamp":"2026-01-18T04:27:59.383Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:27:59 +0000] \"POST / HTTP/1.1\" 403 50 \"-\" \"PostmanRuntime/7.39.1\"","service":"acquisitions-api","timestamp":"2026-01-18T04:27:59.395Z"}
+{"level":"warn","message":"Bot detected","service":"acquisitions-api","timestamp":"2026-01-18T04:28:22.749Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:28:22 +0000] \"POST /api HTTP/1.1\" 403 50 \"-\" \"PostmanRuntime/7.39.1\"","service":"acquisitions-api","timestamp":"2026-01-18T04:28:22.752Z"}
+{"level":"warn","message":"Bot detected","service":"acquisitions-api","timestamp":"2026-01-18T04:31:17.466Z"}
+{"level":"info","message":"::1 - - [18/Jan/2026:04:31:17 +0000] \"GET / HTTP/1.1\" 403 50 \"-\" \"PostmanRuntime/7.39.1\"","service":"acquisitions-api","timestamp":"2026-01-18T04:31:17.471Z"}
