@@ -62,10 +62,21 @@ export const authenticateUser = async ({ email, password }) => {
       throw new Error('Invalid password');
     }
 
-    // Return user without password
-    const { password: _, ...userWithoutPassword } = user;
+    const [authenticatedUser] = await db
+      .select({
+        id: Users.id,
+        name: Users.name,
+        email: Users.email,
+        role: Users.role,
+        createdAt: Users.createdAt,
+        updatedAt: Users.updatedAt,
+      })
+      .from(Users)
+      .where(eq(Users.email, email))
+      .limit(1);
+
     logger.info(`User authenticated successfully for email: ${email}`);
-    return userWithoutPassword;
+    return authenticatedUser;
   } catch (error) {
     logger.error('Error authenticating user:', error);
     throw error;

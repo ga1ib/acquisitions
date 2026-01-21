@@ -11,8 +11,8 @@ function makeRequest(path, method = 'GET', data = null) {
     const options = {
       hostname: BASE_URL,
       port: PORT,
-      path: path,
-      method: method,
+      path,
+      method,
       headers: {
         'Content-Type': 'application/json',
       }
@@ -30,7 +30,7 @@ function makeRequest(path, method = 'GET', data = null) {
           const response = {
             statusCode: res.statusCode,
             headers: res.headers,
-            body: body,
+            body,
             json: () => {
               try {
                 return JSON.parse(body);
