@@ -29,11 +29,15 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString(),uptime: process.uptime() });
 });
 app.get('/api', (req, res) => {
-  res.status(200).send('Acquisitions Service API is up and running!');
+  res.status(200).json({ message: 'Acquisitions API is up and running!' });
 });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
+
+app.use((rec,res)=>{
+  res.status(404).json({ error: 'Route Not Found' });
+});
 
 
 export default app;

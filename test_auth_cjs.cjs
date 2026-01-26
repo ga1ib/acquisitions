@@ -1,7 +1,9 @@
 // CommonJS version of the auth test script
 // Run with: node test_auth_cjs.js
 
-const http = require('http');
+// const http = require('http');
+import http from 'http';
+
 
 const BASE_URL = 'localhost';
 const PORT = 3000;
