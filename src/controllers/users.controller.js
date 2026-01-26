@@ -6,7 +6,10 @@ import {
   updateUser as updateUserService,
   deleteUser as deleteUserService,
 } from '../services/users.services.js';
-import { updateUserSchema, userIdSchema } from '../validations/users.validation.js';
+import {
+  updateUserSchema,
+  userIdSchema,
+} from '../validations/users.validation.js';
 
 export const fetchAllUsers = async (req, res, next) => {
   try {
@@ -79,11 +82,15 @@ export const updateUser = async (req, res, next) => {
     const requesterRole = req.user.role;
 
     if (requesterRole !== 'admin' && requesterId !== id) {
-      return res.status(403).json({ message: 'You can only update your own account' });
+      return res
+        .status(403)
+        .json({ message: 'You can only update your own account' });
     }
 
     if (typeof updates.role !== 'undefined' && requesterRole !== 'admin') {
-      return res.status(403).json({ message: 'Only admin users can change roles' });
+      return res
+        .status(403)
+        .json({ message: 'Only admin users can change roles' });
     }
 
     const sanitizedUpdates = { ...updates };
@@ -130,7 +137,9 @@ export const deleteUser = async (req, res, next) => {
     const requesterRole = req.user.role;
 
     if (requesterRole !== 'admin' && requesterId !== id) {
-      return res.status(403).json({ message: 'You can only delete your own account' });
+      return res
+        .status(403)
+        .json({ message: 'You can only delete your own account' });
     }
 
     try {

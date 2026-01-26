@@ -4,7 +4,6 @@
 // const http = require('http');
 import http from 'http';
 
-
 const BASE_URL = 'localhost';
 const PORT = 3000;
 
@@ -17,16 +16,16 @@ function makeRequest(path, method = 'GET', data = null) {
       method,
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     };
 
-    const req = http.request(options, (res) => {
+    const req = http.request(options, res => {
       let body = '';
-      
-      res.on('data', (chunk) => {
+
+      res.on('data', chunk => {
         body += chunk;
       });
-      
+
       res.on('end', () => {
         try {
           const response = {
@@ -39,7 +38,7 @@ function makeRequest(path, method = 'GET', data = null) {
               } catch {
                 return body;
               }
-            }
+            },
           };
           resolve(response);
         } catch (error) {
@@ -47,15 +46,15 @@ function makeRequest(path, method = 'GET', data = null) {
         }
       });
     });
-    
-    req.on('error', (error) => {
+
+    req.on('error', error => {
       reject(error);
     });
-    
+
     if (data) {
       req.write(JSON.stringify(data));
     }
-    
+
     req.end();
   });
 }
@@ -80,10 +79,14 @@ async function testAuth() {
       name: 'Test User',
       email: 'test@example.com',
       password: 'password123',
-      role: 'user'
+      role: 'user',
     };
 
-    const signupResponse = await makeRequest('/api/auth/SignUp', 'POST', signupData);
+    const signupResponse = await makeRequest(
+      '/api/auth/SignUp',
+      'POST',
+      signupData
+    );
     if (signupResponse.statusCode === 201) {
       console.log('✅ Signup successful:', signupResponse.json());
     } else {
@@ -95,10 +98,14 @@ async function testAuth() {
     console.log('3. Testing user signin...');
     const signinData = {
       email: 'test@example.com',
-      password: 'password123'
+      password: 'password123',
     };
 
-    const signinResponse = await makeRequest('/api/auth/SignIn', 'POST', signinData);
+    const signinResponse = await makeRequest(
+      '/api/auth/SignIn',
+      'POST',
+      signinData
+    );
     if (signinResponse.statusCode === 200) {
       console.log('✅ Signin successful:', signinResponse.json());
     } else {
@@ -120,19 +127,28 @@ async function testAuth() {
     console.log('5. Testing invalid credentials...');
     const invalidSigninData = {
       email: 'test@example.com',
-      password: 'wrongpassword'
+      password: 'wrongpassword',
     };
 
-    const invalidResponse = await makeRequest('/api/auth/SignIn', 'POST', invalidSigninData);
+    const invalidResponse = await makeRequest(
+      '/api/auth/SignIn',
+      'POST',
+      invalidSigninData
+    );
     if (invalidResponse.statusCode === 401) {
-      console.log('✅ Invalid credentials properly rejected:', invalidResponse.json());
+      console.log(
+        '✅ Invalid credentials properly rejected:',
+        invalidResponse.json()
+      );
     } else {
-      console.log('❌ Invalid credentials should have been rejected, got status:', invalidResponse.statusCode);
+      console.log(
+        '❌ Invalid credentials should have been rejected, got status:',
+        invalidResponse.statusCode
+      );
     }
     console.log('');
 
     console.log('All tests completed!');
-
   } catch (error) {
     console.error('Test error:', error.message);
   }

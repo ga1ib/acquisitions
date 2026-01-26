@@ -9,6 +9,7 @@ This is a Node.js backend API service called "acquisitions" built with Express.j
 ## Development Commands
 
 ### Core Commands
+
 - **Start development server**: `npm run dev` - Runs with `--watch` for auto-restart
 - **Lint code**: `npm run lint` - Check for linting errors
 - **Fix lint issues**: `npm run lint:fix` - Auto-fix linting errors
@@ -16,6 +17,7 @@ This is a Node.js backend API service called "acquisitions" built with Express.j
 - **Check formatting**: `npm run format:check` - Verify Prettier formatting
 
 ### Database Commands
+
 - **Generate migrations**: `npm run db:generate` - Create Drizzle migrations from schema changes
 - **Run migrations**: `npm run db:migrate` - Apply pending migrations to database
 - **Database studio**: `npm run db:studio` - Open Drizzle Studio for database management
@@ -23,6 +25,7 @@ This is a Node.js backend API service called "acquisitions" built with Express.j
 ## Architecture
 
 ### Directory Structure
+
 ```
 src/
 ├── config/          # Configuration files (database, logger)
@@ -39,6 +42,7 @@ src/
 ```
 
 ### Tech Stack
+
 - **Runtime**: Node.js with ES modules (`"type": "module"`)
 - **Framework**: Express.js v5.x
 - **Database**: Neon PostgreSQL with Drizzle ORM
@@ -51,24 +55,28 @@ src/
 ### Key Patterns
 
 #### Database Layer
+
 - Uses Drizzle ORM with Neon serverless PostgreSQL
 - Database connection configured in `src/config/database.js`
 - Models defined in `src/models/` using Drizzle schema definitions
 - Migrations managed through `drizzle-kit`
 
 #### Authentication Flow
+
 - JWT-based authentication with secure HTTP-only cookies
 - Password hashing with bcrypt (salt rounds: 10)
 - User roles: 'user' (default) and 'admin'
 - Validation with Zod schemas in `src/validations/`
 
 #### Error Handling
+
 - Winston logging configured with different levels (error, info)
 - Logs written to `logs/error.log` and `logs/combined.log`
 - Console logging in non-production environments
 - Validation error formatting utility
 
 #### Code Standards
+
 - ES6+ with modern JavaScript features
 - 2-space indentation, single quotes, semicolons required
 - Unix line endings (LF)
@@ -77,6 +85,7 @@ src/
 ## Environment Configuration
 
 Required environment variables (see `.env.example`):
+
 - `PORT` - Server port (default: 3000)
 - `NODE_ENV` - Environment (development/production)
 - `LOG_LEVEL` - Winston log level (default: info)
@@ -87,6 +96,7 @@ Required environment variables (see `.env.example`):
 ## Current State
 
 ### Implemented Features
+
 - Express server with security middleware (helmet, CORS)
 - Database connection with Drizzle ORM
 - User model with authentication fields
@@ -97,6 +107,7 @@ Required environment variables (see `.env.example`):
 - Health check endpoints (`/` and `/health`)
 
 ### Known Issues
+
 - Auth controller has import path errors (references non-existent files)
 - Auth routes are not connected to controllers (placeholder responses)
 - Auth service has syntax errors in database queries
@@ -104,7 +115,9 @@ Required environment variables (see `.env.example`):
 - No test framework setup
 
 ### Next Development Steps
+
 When working on this codebase:
+
 1. Fix import paths in auth controller
 2. Connect auth routes to controller functions
 3. Implement proper authentication middleware

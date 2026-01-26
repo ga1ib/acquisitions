@@ -4,8 +4,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '../config/database.js';
 import { Users } from '../models/user.model.js';
 
-
-export const hashpassword = async (password) => {
+export const hashpassword = async password => {
   try {
     return await bcrypt.hash(password, 10);
   } catch (error) {
@@ -25,22 +24,29 @@ export const comparePassword = async (password, hashedPassword) => {
 
 export const createUser = async ({ name, email, password, role = 'user' }) => {
   try {
-    const existingUser = await db.select().from(Users).where(eq(Users.email, email)).limit(1);
+    const existingUser = await db
+      .select()
+      .from(Users)
+      .where(eq(Users.email, email))
+      .limit(1);
     if (existingUser.length > 0) {
       throw new Error('User already exists');
     }
     const hashedPassword = await hashpassword(password);
-    const [newUser] = await db.insert(Users).values({
-      name,
-      email,
-      password: hashedPassword,
-      role,
-    }).returning({
-      id: Users.id,
-      name: Users.name,
-      email: Users.email,
-      role: Users.role
-    });
+    const [newUser] = await db
+      .insert(Users)
+      .values({
+        name,
+        email,
+        password: hashedPassword,
+        role,
+      })
+      .returning({
+        id: Users.id,
+        name: Users.name,
+        email: Users.email,
+        role: Users.role,
+      });
     logger.info('User created:', newUser);
     return newUser;
   } catch (error) {
@@ -51,8 +57,12 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
 
 export const authenticateUser = async ({ email, password }) => {
   try {
-    const [user] = await db.select().from(Users).where(eq(Users.email, email)).limit(1);
-    
+    const [user] = await db
+      .select()
+      .from(Users)
+      .where(eq(Users.email, email))
+      .limit(1);
+
     if (!user) {
       throw new Error('User not found');
     }

@@ -14,7 +14,10 @@ describe('GET /api', () => {
   it('should respond to api message', async () => {
     const response = await request(app).get('/api');
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('message', 'Acquisitions API is up and running!');
+    expect(response.body).toHaveProperty(
+      'message',
+      'Acquisitions API is up and running!'
+    );
   });
 });
 describe('GET /nonexistent', () => {
@@ -24,4 +27,3 @@ describe('GET /nonexistent', () => {
     expect(response.body).toHaveProperty('error', 'Route Not Found');
   });
 });
-

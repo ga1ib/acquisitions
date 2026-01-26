@@ -10,14 +10,15 @@ import securityMiddleware from './middleware/security.middleware.js';
 
 const app = express();
 
-
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(morgan('combined', { stream: { write: msg => logger.info(msg.trim()) } }));
+app.use(
+  morgan('combined', { stream: { write: msg => logger.info(msg.trim()) } })
+);
 
 app.use(securityMiddleware);
 app.get('/', (req, res) => {
@@ -26,7 +27,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString(),uptime: process.uptime() });
+  res
+    .status(200)
+    .json({
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    });
 });
 app.get('/api', (req, res) => {
   res.status(200).json({ message: 'Acquisitions API is up and running!' });
@@ -35,9 +42,8 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 
-app.use((rec,res)=>{
+app.use((rec, res) => {
   res.status(404).json({ error: 'Route Not Found' });
 });
-
 
 export default app;

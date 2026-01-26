@@ -21,7 +21,7 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async id => {
   try {
     const [user] = await db
       .select({
@@ -57,7 +57,8 @@ export const updateUser = async (id, updates) => {
 
     const allowedUpdates = {};
     if (typeof updates.name !== 'undefined') allowedUpdates.name = updates.name;
-    if (typeof updates.email !== 'undefined') allowedUpdates.email = updates.email;
+    if (typeof updates.email !== 'undefined')
+      allowedUpdates.email = updates.email;
     if (typeof updates.role !== 'undefined') allowedUpdates.role = updates.role;
 
     if (Object.keys(allowedUpdates).length === 0) {
@@ -98,7 +99,7 @@ export const updateUser = async (id, updates) => {
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async id => {
   try {
     const [existingUser] = await db
       .select()

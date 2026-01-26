@@ -56,7 +56,7 @@
 
 1. **Connected routes to controllers:**
    - `POST /SignUp` → `signup` controller
-   - `POST /SignIn` → `signin` controller  
+   - `POST /SignIn` → `signin` controller
    - `POST /SignOut` → `signout` controller
 
 ### Fixed Additional Issues:
@@ -68,23 +68,26 @@
 ## API Endpoints
 
 ### POST `/api/auth/SignUp`
+
 **Request Body:**
+
 ```json
 {
   "name": "John Doe",
-  "email": "john@example.com", 
+  "email": "john@example.com",
   "password": "password123",
   "role": "user" // optional, defaults to "user"
 }
 ```
 
 **Success Response (201):**
+
 ```json
 {
   "message": "User registered successfully",
   "user": {
     "id": 1,
-    "name": "John Doe", 
+    "name": "John Doe",
     "email": "john@example.com",
     "role": "user"
   }
@@ -92,7 +95,9 @@
 ```
 
 ### POST `/api/auth/SignIn`
+
 **Request Body:**
+
 ```json
 {
   "email": "john@example.com",
@@ -101,20 +106,23 @@
 ```
 
 **Success Response (200):**
+
 ```json
 {
   "message": "User logged in successfully",
   "user": {
     "id": 1,
     "name": "John Doe",
-    "email": "john@example.com", 
+    "email": "john@example.com",
     "role": "user"
   }
 }
 ```
 
 ### POST `/api/auth/SignOut`
+
 **Success Response (200):**
+
 ```json
 {
   "message": "User logged out successfully"
@@ -141,10 +149,12 @@
 Two test scripts are provided:
 
 **ES Modules version** (`test_auth.js`):
+
 1. Start the server: `npm run dev`
 2. Run tests: `node test_auth.js`
 
 **CommonJS version** (`test_auth_cjs.js`) - More compatible:
+
 1. Start the server: `npm run dev`
 2. Run tests: `node test_auth_cjs.js`
 
@@ -157,7 +167,7 @@ Both scripts test all authentication endpoints and error cases.
 To complete the authentication system:
 
 1. **Add middleware for protected routes**
-2. **Implement token refresh mechanism** 
+2. **Implement token refresh mechanism**
 3. **Add password reset functionality**
 4. **Set up proper test suite with Jest/Mocha**
 5. **Add rate limiting for auth endpoints**

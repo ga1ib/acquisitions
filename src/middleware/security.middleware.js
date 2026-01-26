@@ -72,7 +72,6 @@ const securityMiddleware = async (req, res, next) => {
     // Fallback deny
     logger.warn('Request denied by Arcjet', reason.getDetails?.());
     return res.status(403).json({ message: 'Request denied' });
-
   } catch (error) {
     logger.error('Arcjet middleware error', error);
     return res.status(500).json({

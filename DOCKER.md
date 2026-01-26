@@ -5,11 +5,13 @@ This guide explains how to run the Acquisitions API using Docker with different 
 ## 🏗️ Architecture Overview
 
 ### Development Environment
+
 - **Application**: Node.js Express API (containerized)
 - **Database**: Neon Local proxy (containerized) → Neon Cloud
 - **Features**: Hot reloading, ephemeral database branches, debug logging
 
-### Production Environment  
+### Production Environment
+
 - **Application**: Node.js Express API (containerized, optimized)
 - **Database**: Direct connection to Neon Cloud
 - **Features**: Optimized build, security hardening, resource limits
@@ -26,23 +28,25 @@ This guide explains how to run the Acquisitions API using Docker with different 
 
 1. **Get your Neon credentials** from [Neon Console](https://console.neon.com):
    - `NEON_API_KEY`: Your API key
-   - `NEON_PROJECT_ID`: Your project ID  
+   - `NEON_PROJECT_ID`: Your project ID
    - `PARENT_BRANCH_ID`: Main branch ID (usually `main` or `master`)
 
 2. **Configure environment**:
+
    ```powershell
    # Copy the example environment file
    Copy-Item .env.example .env.development
-   
+
    # Edit .env.development with your Neon credentials
    notepad .env.development
    ```
 
 3. **Start development environment**:
+
    ```powershell
    # Using the helper script (recommended)
    .\scripts\dev-start.ps1
-   
+
    # Or manually with Docker Compose
    docker-compose -f docker-compose.dev.yml --env-file .env.development up -d
    ```
@@ -55,20 +59,22 @@ This guide explains how to run the Acquisitions API using Docker with different 
 ### Production Environment
 
 1. **Configure production environment**:
+
    ```powershell
    # Copy the example environment file
    Copy-Item .env.example .env.production
-   
+
    # Edit .env.production with your Neon Cloud database URL
    notepad .env.production
    ```
 
 2. **Deploy to production**:
+
    ```powershell
    # Build and deploy using helper script
    .\scripts\prod-deploy.ps1 -Build
    .\scripts\prod-deploy.ps1 -Deploy
-   
+
    # Or manually with Docker Compose
    docker-compose -f docker-compose.prod.yml --env-file .env.production up -d
    ```
@@ -76,6 +82,7 @@ This guide explains how to run the Acquisitions API using Docker with different 
 ## ⚙️ Environment Configuration
 
 ### Development (.env.development)
+
 ```bash
 # Server Configuration
 PORT=3000
@@ -87,7 +94,7 @@ DATABASE_URL=postgres://neondb_owner:password@neon-local:5432/neondb
 
 # Neon Local Configuration
 NEON_API_KEY=your_neon_api_key_here
-NEON_PROJECT_ID=your_neon_project_id_here  
+NEON_PROJECT_ID=your_neon_project_id_here
 PARENT_BRANCH_ID=your_parent_branch_id_here
 
 # JWT Configuration
@@ -96,8 +103,9 @@ JWT_EXPIRES_IN=24h
 ```
 
 ### Production (.env.production)
+
 ```bash
-# Server Configuration  
+# Server Configuration
 PORT=3000
 NODE_ENV=production
 LOG_LEVEL=info
@@ -117,6 +125,7 @@ ENABLE_CORS=false
 ## 🛠️ Development Workflow
 
 ### Starting Development
+
 ```powershell
 # Start with automatic ephemeral branch creation
 .\scripts\dev-start.ps1
@@ -129,12 +138,14 @@ ENABLE_CORS=false
 ```
 
 ### Development Features
+
 - **Hot Reloading**: Source code changes automatically restart the app
 - **Ephemeral Branches**: Each container startup creates a fresh database branch
 - **Debug Logging**: Detailed logs for development and debugging
 - **Volume Mounting**: Source code mounted for instant updates
 
 ### Managing Development Environment
+
 ```powershell
 # Stop development environment
 .\scripts\dev-start.ps1 -Stop
@@ -149,6 +160,7 @@ docker-compose -f docker-compose.dev.yml ps
 ## 🚀 Production Deployment
 
 ### Production Build Process
+
 ```powershell
 # Build optimized production containers
 .\scripts\prod-deploy.ps1 -Build
@@ -161,6 +173,7 @@ docker-compose -f docker-compose.dev.yml ps
 ```
 
 ### Production Features
+
 - **Multi-stage Build**: Optimized image size and security
 - **Non-root User**: Runs as nodejs user (UID 1001)
 - **Resource Limits**: CPU and memory constraints
@@ -168,6 +181,7 @@ docker-compose -f docker-compose.dev.yml ps
 - **Security Hardening**: Read-only filesystem, dropped capabilities
 
 ### Production Monitoring
+
 ```powershell
 # View production logs
 .\scripts\prod-deploy.ps1 -Logs
@@ -182,6 +196,7 @@ docker-compose -f docker-compose.dev.yml ps
 ## 🔧 Manual Docker Commands
 
 ### Development
+
 ```powershell
 # Build development image
 docker-compose -f docker-compose.dev.yml build
@@ -197,11 +212,12 @@ docker-compose -f docker-compose.dev.yml down
 ```
 
 ### Production
+
 ```powershell
 # Build production image
 docker-compose -f docker-compose.prod.yml build
 
-# Start services  
+# Start services
 docker-compose -f docker-compose.prod.yml --env-file .env.production up -d
 
 # View logs
@@ -214,12 +230,14 @@ docker-compose -f docker-compose.prod.yml down
 ## 🗃️ Database Management
 
 ### Neon Local (Development)
+
 - **Automatic Branches**: Creates ephemeral branches on container start
 - **Branch Lifecycle**: Branches are deleted when container stops
 - **Data Persistence**: Data is temporary (perfect for testing)
 - **Connection**: App connects to `neon-local:5432` via Docker network
 
 ### Neon Cloud (Production)
+
 - **Direct Connection**: App connects directly to Neon Cloud
 - **Persistent Data**: Production database with backup/restore
 - **SSL Required**: Secure connections with `?sslmode=require`
@@ -230,6 +248,7 @@ docker-compose -f docker-compose.prod.yml down
 ### Common Issues
 
 **1. Neon Local fails to start**
+
 ```powershell
 # Check Neon credentials
 docker-compose -f docker-compose.dev.yml logs neon-local
@@ -238,6 +257,7 @@ docker-compose -f docker-compose.dev.yml logs neon-local
 ```
 
 **2. Application can't connect to database**
+
 ```powershell
 # Check if Neon Local is healthy
 docker-compose -f docker-compose.dev.yml ps
@@ -246,6 +266,7 @@ docker-compose -f docker-compose.dev.yml ps
 ```
 
 **3. Permission errors in production**
+
 ```powershell
 # Check if logs directory exists and has proper permissions
 mkdir logs
@@ -253,6 +274,7 @@ icacls logs /grant Everyone:F
 ```
 
 **4. Build failures**
+
 ```powershell
 # Clean Docker cache and rebuild
 docker system prune -a
@@ -260,6 +282,7 @@ docker-compose build --no-cache
 ```
 
 ### Health Checks
+
 ```powershell
 # Application health check
 curl http://localhost:3000/health
@@ -272,6 +295,7 @@ docker ps --filter "name=acquisitions"
 ```
 
 ### Log Locations
+
 - **Development**: Container logs via `docker-compose logs`
 - **Production**: Persistent logs in `./logs` directory
 - **Database**: Neon dashboard for cloud logs
